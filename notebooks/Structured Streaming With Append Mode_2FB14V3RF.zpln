@@ -1,0 +1,334 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md \n## Append Mode\n\n#### This is the default mode, where only the new rows added to the Result Table since the last trigger will be outputted to the sink. This is supported for only those queries where rows added to the Result Table is never going to change. Hence, this mode guarantees that each row will be output only once (assuming fault-tolerant sink).For example, queries with only select, where, map, flatMap, filter, join, etc. will support Append mode.",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:39:29.173",
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eAppend Mode\u003c/h2\u003e\n\u003ch4\u003eThis is the default mode, where only the new rows added to the Result Table since the last trigger will be outputted to the sink. This is supported for only those queries where rows added to the Result Table is never going to change. Hence, this mode guarantees that each row will be output only once (assuming fault-tolerant sink).For example, queries with only select, where, map, flatMap, filter, join, etc. will support Append mode.\u003c/h4\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118532_742421520",
+      "id": "paragraph_1589480259821_552852928",
+      "dateCreated": "2020-05-18 18:38:38.532",
+      "dateStarted": "2020-05-18 18:39:29.244",
+      "dateFinished": "2020-05-18 18:39:31.581",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.types.{StringType, StructType, TimestampType}\n\nprintln(\"Welcome to Spark Structured Streaming Tutorial\")",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:40:03.824",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Welcome to Spark Structured Streaming Tutorial\nimport org.apache.spark.sql.types.{StringType, StructType, TimestampType}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118532_1754365856",
+      "id": "paragraph_1589312460443_1790611395",
+      "dateCreated": "2020-05-18 18:38:38.532",
+      "dateStarted": "2020-05-18 18:40:03.849",
+      "dateFinished": "2020-05-18 18:40:21.469",
+      "status": "ABORT"
+    },
+    {
+      "title": "Prepare Data and Schema",
+      "text": "val input_dir \u003d \"/data/\" // Initialize data directory to be read from.\nval jsonSchema \u003d new StructType().add(\"time\", TimestampType).add(\"action\", StringType) // Add the schema for data to be read.",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:40:29.391",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34minput_dir\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d /data/\n\u001b[1m\u001b[34mjsonSchema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(time,TimestampType,true), StructField(action,StringType,true))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118532_-1276717234",
+      "id": "paragraph_1589312501267_1648295091",
+      "dateCreated": "2020-05-18 18:38:38.532",
+      "dateStarted": "2020-05-18 18:40:29.407",
+      "dateFinished": "2020-05-18 18:40:30.014",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Create the Stream reading from files",
+      "text": "  val streamingInputDF \u003d\n    spark\n      .readStream // `readStream` instead of `read` for creating streaming DataFrame\n      .schema(jsonSchema) // Set the schema of the JSON data // Treat a sequence of files as a stream by picking one file at a time\n      .json(input_dir) // read from the data directory\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:40:33.261",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mstreamingInputDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [time: timestamp, action: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118532_97687395",
+      "id": "paragraph_1589313021260_1748617835",
+      "dateCreated": "2020-05-18 18:38:38.532",
+      "dateStarted": "2020-05-18 18:40:33.275",
+      "dateFinished": "2020-05-18 18:40:36.518",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Start the Streaming Job",
+      "text": "val query \u003d\n    streamingInputDF\n    .writeStream // writeSTream to write the output to the sink in streams\n    .outputMode(\"append\") // Output mode is append\n    .format(\"memory\") // Sink mode is memory to query on top of the output data in realtime\n    .queryName(\"Streamer\") // Provide a view name to query the data in sql\n    .start()  // Start the streaming data",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:40:39.154",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mquery\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.streaming.StreamingQuery\u001b[0m \u003d org.apache.spark.sql.execution.streaming.StreamingQueryWrapper@443930f2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118532_-1008694127",
+      "id": "paragraph_1589313016658_1070192101",
+      "dateCreated": "2020-05-18 18:38:38.533",
+      "dateStarted": "2020-05-18 18:40:39.176",
+      "dateFinished": "2020-05-18 18:40:41.194",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Query the Stream",
+      "text": "%sql select time,action from Streamer ;",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:41:13.119",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "time": "string",
+                      "action": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "time\taction\n2016-07-26 08:15:07.0\tOpen\n2016-07-26 08:15:47.0\tClose\n2016-07-26 08:16:42.0\tOpen\n2016-07-26 08:16:59.0\tClose\n2016-07-26 08:17:05.0\tOpen\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118533_589761744",
+      "id": "paragraph_1589313028505_294909212",
+      "dateCreated": "2020-05-18 18:38:38.533",
+      "dateStarted": "2020-05-18 18:41:13.139",
+      "dateFinished": "2020-05-18 18:41:13.336",
+      "status": "FINISHED"
+    },
+    {
+      "text": "query.stop()\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-18 18:41:54.923",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827118533_-695998844",
+      "id": "paragraph_1589743129265_73173765",
+      "dateCreated": "2020-05-18 18:38:38.533",
+      "dateStarted": "2020-05-18 18:41:54.939",
+      "dateFinished": "2020-05-18 18:41:55.822",
+      "status": "FINISHED"
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1589827314938_2110248476",
+      "id": "paragraph_1589827314938_2110248476",
+      "dateCreated": "2020-05-18 18:41:54.938",
+      "status": "READY"
+    }
+  ],
+  "name": "Structured Streaming With Append Mode",
+  "id": "2FB14V3RF",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
