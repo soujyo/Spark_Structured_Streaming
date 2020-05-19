@@ -6,7 +6,9 @@
 ####Open the below URL in your browser to access zeppelin at port 8082
 * http://0.0.0.0:8082
 
-####Access the notebooks in the notebook section.
+####Import pre-created notebooks in the notebooks_repository directory one by one using the Web UI.
+
+####Access the notebooks in the notebook section of the Web UI.
 
 ####Open the tutorial notebooks.
 
